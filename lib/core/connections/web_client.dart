@@ -5,4 +5,4 @@ import 'package:http_interceptor/http/http.dart';
 
 final http.Client client = InterceptedClient.build(
     interceptors: [DataInterceptor()],
-    requestTimeout: const Duration(seconds: 5));
+    requestTimeout: const Duration(seconds: 40));

@@ -1,4 +1,4 @@
-import 'package:carbon_app/features/carbon_app/domain/repositories/carbon_app_repository.dart';
+import 'package:carbon_app/features/carbon_app/domain/repositories/carbon_url_repository.dart';
 import 'package:carbon_app/features/carbon_app/domain/usecases/get_concrete_carbon_url.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
