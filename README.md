@@ -11,6 +11,6 @@ Luis Henrique Rocha Bueno
 1. Atividade 10 - Resocoder 1 e 2
 [Youtube](https://youtu.be/FUczrDmCyFs)
 
-2. Atividade 10 - Resocoder 3 e 4
+2. Atividade 11 - Resocoder 3 e 4
 
 [YouTube](https://youtu.be/qkanstjWbrI)
