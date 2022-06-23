@@ -16,7 +16,7 @@ class CarbonUrlRepositoryImpl implements CarbonUrlRepository {
   FunctionForGetCarbonData function = FunctionForGetCarbonData();
 
   @override
-  Future<Either<Failures, CarbonUrl>> getConcreteCarbonUrl(String url) async {
+  Future<Either<Failure, CarbonUrl>> getConcreteCarbonUrl(String url) async {
     final http.Response response = await function.requestGetCarbonData(url);
 
     if (function.isRequestValid(response)) {

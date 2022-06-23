@@ -1,20 +1,27 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:equatable/equatable.dart';
 
 class DataStatistics extends Equatable {
-  final Statistics statistics;
-  final int cleanerThan;
+  Statistics? statistics;
+  int? cleanerThan;
 
-  const DataStatistics({required this.statistics, required this.cleanerThan});
+  DataStatistics({this.statistics, this.cleanerThan});
 
-  factory DataStatistics.fromJson(Map<String, dynamic> json) {
-    return DataStatistics(
-        statistics: Statistics.fromJson(json['statistics']),
-        cleanerThan: json['cleanerThan']);
+  DataStatistics.fromJson(Map<String, dynamic> json) {
+    if (json['statistics'] != null) {
+      statistics = Statistics.fromJson(json['statistics']);
+    } else {
+      statistics = null;
+    }
+    cleanerThan = json['cleanerThan'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['statistics'] = statistics.toJson();
+    if (statistics != null) {
+      data['statistics'] = statistics!.toJson();
+    }
     data['cleanerThan'] = cleanerThan;
     return data;
   }
@@ -24,25 +31,29 @@ class DataStatistics extends Equatable {
 }
 
 class Statistics extends Equatable {
-  final int adjustedBytes;
-  final double energy;
-  final Co2 co2;
+  int? adjustedBytes;
+  double? energy;
+  Co2? co2;
 
-  const Statistics(
-      {required this.adjustedBytes, required this.energy, required this.co2});
+  Statistics({this.adjustedBytes, this.energy, this.co2});
 
-  factory Statistics.fromJson(Map<String, dynamic> json) {
-    return Statistics(
-        adjustedBytes: json['adjustedBytes'],
-        energy: json['energy'],
-        co2: Co2.fromJson(json['co2']));
+  Statistics.fromJson(Map<String, dynamic> json) {
+    adjustedBytes = json['adjustedBytes'];
+    energy = json['energy'];
+    if (json['co2'] != null) {
+      co2 = Co2.fromJson(json['co2']);
+    } else {
+      co2 = null;
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['adjustedBytes'] = adjustedBytes;
     data['energy'] = energy;
-    data['co2'] = co2.toJson();
+    if (co2 != null) {
+      data['co2'] = co2!.toJson();
+    }
     return data;
   }
 
@@ -51,21 +62,32 @@ class Statistics extends Equatable {
 }
 
 class Co2 extends Equatable {
-  final Grid grid;
-  final Grid renewable;
+  Grid? grid;
+  Grid? renewable;
 
-  const Co2({required this.grid, required this.renewable});
+  Co2({this.grid, this.renewable});
 
-  factory Co2.fromJson(Map<String, dynamic> json) {
-    return Co2(
-        grid: Grid.fromJson(json['grid']),
-        renewable: Grid.fromJson(json['renewable']));
+  Co2.fromJson(Map<String, dynamic> json) {
+    if (json['grid'] != null) {
+      grid = Grid.fromJson(json['grid']);
+    } else {
+      grid = null;
+    }
+    if (json['renewable'] != null) {
+      renewable = Grid.fromJson(json['renewable']);
+    } else {
+      renewable = null;
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['grid'] = grid.toJson();
-    data['renewable'] = renewable.toJson();
+    if (grid != null) {
+      data['grid'] = grid!.toJson();
+    }
+    if (renewable != null) {
+      data['renewable'] = renewable!.toJson();
+    }
     return data;
   }
 
@@ -74,13 +96,14 @@ class Co2 extends Equatable {
 }
 
 class Grid extends Equatable {
-  final double grams;
-  final double litres;
+  double? grams;
+  double? litres;
 
-  const Grid({required this.grams, required this.litres});
+  Grid({this.grams, this.litres});
 
-  factory Grid.fromJson(Map<String, dynamic> json) {
-    return Grid(grams: json['grams'], litres: json['litres']);
+  Grid.fromJson(Map<String, dynamic> json) {
+    grams = json['grams'];
+    litres = json['litres'];
   }
 
   Map<String, dynamic> toJson() {

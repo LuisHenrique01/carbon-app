@@ -1,25 +1,24 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class CarbonUrl extends Equatable {
-  final String url;
-  final bool green;
-  final int bytes;
-  final double cleanerThan;
+  String? url;
+  bool? green;
+  int? bytes;
+  double? cleanerThan;
 
-  const CarbonUrl({
-    required this.url,
-    required this.green,
-    required this.bytes,
-    required this.cleanerThan,
+  CarbonUrl({
+    this.url,
+    this.green,
+    this.bytes,
+    this.cleanerThan,
   });
 
-  factory CarbonUrl.fromJson(Map<String, dynamic> json) {
-    return CarbonUrl(
-      url: json['url'],
-      green: json['green'],
-      bytes: json['bytes'],
-      cleanerThan: json['cleanerThan'],
-    );
+  CarbonUrl.fromJson(Map<String, dynamic> json) {
+    url = json['url'];
+    green = json['green'];
+    bytes = json['bytes'];
+    cleanerThan = json['cleanerThan'];
   }
 
   Map<String, dynamic> toJson() {

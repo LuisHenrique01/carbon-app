@@ -15,10 +15,10 @@ class DataStatisticsRepositoryImpl implements DataStatisticsRepository {
   FunctionForGetDataStatistics function = FunctionForGetDataStatistics();
 
   @override
-  Future<Either<Failures, DataStatistics>> getConcreteDataStatistics(
-      int bytes, int green) async {
+  Future<Either<Failure, DataStatistics>> getConcreteDataStatistics(
+      String params) async {
     final http.Response response =
-        await function.requestGetdataStatitiscs(bytes, green);
+        await function.requestGetdataStatitiscs(params);
 
     if (function.isRequestValid(response)) {
       return Right(function.returnDataStatisticsModel(response));
@@ -28,9 +28,9 @@ class DataStatisticsRepositoryImpl implements DataStatisticsRepository {
 }
 
 class FunctionForGetDataStatistics {
-  Future<http.Response> requestGetdataStatitiscs(int bytes, int green) async {
-    return await client.get(Uri.parse(
-        "${AppConstants.API_GET_STATISTICS}bytes=$bytes&green=$green"));
+  Future<http.Response> requestGetdataStatitiscs(String params) async {
+    return await client
+        .get(Uri.parse("${AppConstants.API_GET_STATISTICS}$params"));
   }
 
   bool isRequestValid(http.Response response) {

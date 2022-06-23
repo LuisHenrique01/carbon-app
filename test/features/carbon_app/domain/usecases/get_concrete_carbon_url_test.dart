@@ -1,10 +1,9 @@
+import 'package:carbon_app/features/carbon_app/data/repositories/carbon_url_repository.dart';
 import 'package:carbon_app/features/carbon_app/domain/repositories/carbon_url_repository.dart';
 import 'package:carbon_app/features/carbon_app/domain/usecases/get_concrete_carbon_url.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import '../../data/repositories/carbon_url_repository.dart';
 
 class MockCarbonUrlRepository extends Mock implements CarbonUrlRepository {}
 

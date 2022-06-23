@@ -1,10 +1,9 @@
+import 'package:carbon_app/features/carbon_app/data/repositories/data_statistics_repository.dart';
 import 'package:carbon_app/features/carbon_app/domain/repositories/data_statistcs.dart';
 import 'package:carbon_app/features/carbon_app/domain/usecases/get_concrete_data_statistics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import '../../data/repositories/data_statistics_repository.dart';
 
 class MockDataStatisticsRepository extends Mock
     implements DataStatisticsRepository {}
@@ -16,9 +15,10 @@ void main() {
 
   const int bytes = 1000;
   const int green = 1;
+  const String params = "bytes=$bytes&green=$green";
 
   test('Validar a chama a API de estatisticas', () async {
-    final test = await usecase.execute(bytes, green);
+    final test = await usecase.execute(params);
 
     expect(test.isRight(), equals(true));
   });
