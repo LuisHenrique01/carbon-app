@@ -5,6 +5,9 @@ import 'package:carbon_app/core/app/constants/app_constants.dart';
 import 'package:carbon_app/core/app/constants/status_constants.dart';
 import 'package:carbon_app/core/connections/web_client.dart';
 import 'package:carbon_app/core/error/failures.dart';
+import 'package:carbon_app/core/platform/network_info.dart';
+import 'package:carbon_app/features/carbon_app/data/datasources/carbon_url_local_data_sources.dart';
+import 'package:carbon_app/features/carbon_app/data/datasources/carbon_url_remote_data_sources.dart';
 import 'package:carbon_app/features/carbon_app/domain/entities/carbon_url.dart';
 import 'package:carbon_app/features/carbon_app/domain/repositories/carbon_url_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -13,7 +16,16 @@ import 'package:http/http.dart' as http;
 
 @Injectable(as: CarbonUrlRepository)
 class CarbonUrlRepositoryImpl implements CarbonUrlRepository {
+  final CarbonUrlRemoteDataSource remoteDataSource;
+  final CarbonUrlLocalDataSource localDataSource;
+  final NetworkInfo networkInfo;
   FunctionForGetCarbonData function = FunctionForGetCarbonData();
+
+  CarbonUrlRepositoryImpl({
+    required this.remoteDataSource,
+    required this.localDataSource,
+    required this.networkInfo,
+  });
 
   @override
   Future<Either<Failure, CarbonUrl>> getConcreteCarbonUrl(String url) async {
